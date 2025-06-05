@@ -7,18 +7,27 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { UsersService } from './services/user-service';
+import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MatButtonModule, MatIconModule, MatInputModule, MatFormFieldModule, MatToolbarModule, RouterModule, RouterLinkActive],
+  imports: [CommonModule, RouterOutlet, MatButtonModule, MatIconModule, MatInputModule, MatFormFieldModule, MatToolbarModule, RouterModule, RouterLinkActive, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ecommerce-frontend';
+  searchForm: FormGroup;
 
-  constructor(public usersService: UsersService, private router: Router) {
+  constructor(public usersService: UsersService, private router: Router, private fb: FormBuilder) {
+    this.searchForm = this.fb.group({
+      searchStr: ['', []]
+    });
+  }
+
+  search()
+  {
+    this.router.navigateByUrl(`/products/search/${this.searchForm.value.searchStr}`);
   }
 
   logout()

@@ -1,4 +1,4 @@
-<h3 class="page-header">Products Show Case</h3>
+<h3 class="page-header">Search Products</h3>
 <div class="flex flex-row flex-wrap flex-justify-content">
     <mat-card class="product flex-item" *ngFor="let product of products">
         <mat-card-header>
@@ -13,8 +13,7 @@
 
         <mat-card-actions>
             <button mat-flat-button color="primary" *ngIf="usersService.isAuthenticated">Add to Cart</button>
-            <a mat-button color="primary" *ngIf="!usersService.isAuthenticated" [routerLink]="['/auth', 'login']">Login
-                to add to cart</a>
+            <a mat-button color="primary" *ngIf="!usersService.isAuthenticated" [routerLink]="['/auth', 'login']">Login to add to cart</a>
         </mat-card-actions>
     </mat-card>
 </div>
